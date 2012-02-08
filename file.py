@@ -1,22 +1,29 @@
+
 import string, re
 
-input_data = "This is? some hello ditto samp324le i'nput Ha;llo."       #just give input first, didn't have to prompt user
+filename = raw_input("Please enter the filename: ")
+file = open(filename,'r')
 
-#input_data.split()
-#is this char a character or not?
-input = input_data.lower()
-l = input.split()
+string = ''
+for line in file:
+    
+#input_data = "This is? some hello ditto samp324le i'nput Ha;llo."       #just give input first, didn't have to prompt user
+     input_data = line
+     input = input_data.lower()
+     l = input.split()
 
-
-for word in l:
-    new_word = re.sub(r'([^A-Za-z0-9])','',word)      #for punctuation
+     for word in l:
+         new_word = re.sub(r'([^A-Za-z0-9])','',word)      #for punctuation
     
 
-    nnword = re.sub(r'([a-z])\1+',r'\1',new_word)     #for double characters
+         nnword = re.sub(r'([a-z])\1+',r'\1',new_word)     #for double characters
    
 
-    nword = re.sub(r'\B[aeiou]\B','',nnword)   
-    print nword
+         nword = re.sub(r'\B[aeiou]\B','',nnword)
+         string += nword + ' '
+     string += '\n'
+
+print string
 
 
 '''
@@ -41,3 +48,4 @@ for word in input_data.split():
 
     print finalWord,
 '''
+
