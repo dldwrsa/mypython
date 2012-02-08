@@ -1,5 +1,4 @@
 
-
 import string, re
 from time import time
 
@@ -28,8 +27,9 @@ for line in file:
 
          nword = re.sub(r'\B[aeiou]\B','',nnword)
          string += nword + ' '
+
          
-         d[nword] = word
+         d[nword] = new_word
          
      
      string += '\n'
@@ -42,19 +42,19 @@ f.close()
 
 input = ''
 fullfile = ''
+rebuilt = ''
 newfile = open('outputfile.txt','r')
 
 for l2 in newfile:
      l4 = l2.split()
      for w in l4:
-          rebuilt = ''
           
           input = d.get(w,None)
-          rebuilt = str(input) + " "
-     fullfile += rebuilt
+          #print input + ' ',
+          rebuilt += str(input) + " "
 
 writtenfile = open("finaloutput.txt",'w')
-writtenfile.write(fullfile)
+writtenfile.write(rebuilt)
 writtenfile.close()
 t2 = time()
 print 'time taken is ',(t2 - t1) ,' seconds'
