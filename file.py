@@ -1,6 +1,8 @@
 
 import string, re
+from time import time
 
+t1 = time()
 filename = raw_input("Please enter the filename: ")
 file = open(filename,'r')
 
@@ -25,7 +27,8 @@ for line in file:
 
 print string
 
-
+t2 = time()
+print 'time taken is ',(t2 - t1) ,' seconds'
 '''
 for word in input_data.split():
     newWord = ''
@@ -48,4 +51,3 @@ for word in input_data.split():
 
     print finalWord,
 '''
-
