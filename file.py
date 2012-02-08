@@ -1,32 +1,61 @@
 
+
 import string, re
 from time import time
 
 t1 = time()
 filename = raw_input("Please enter the filename: ")
 file = open(filename,'r')
+f = open('outputfile.txt','w')
 
 string = ''
+d = {}
+
 for line in file:
-    
+        
 #input_data = "This is? some hello ditto samp324le i'nput Ha;llo."       #just give input first, didn't have to prompt user
      input_data = line
      input = input_data.lower()
      l = input.split()
-
+     
      for word in l:
+
+         
          new_word = re.sub(r'([^A-Za-z0-9])','',word)      #for punctuation
     
-
          nnword = re.sub(r'([a-z])\1+',r'\1',new_word)     #for double characters
    
 
          nword = re.sub(r'\B[aeiou]\B','',nnword)
          string += nword + ' '
+         
+         d[nword] = word
+         
+     
      string += '\n'
 
-print string
+f.write(string)
+#print string
+f.close()
 
+
+
+input = ''
+fullfile = ''
+newfile = open('outputfile.txt','r')
+
+for l2 in newfile:
+     l4 = l2.split()
+     for w in l4:
+          rebuilt = ''
+          
+          input = d.get(w,None)
+          rebuilt = str(input) + " "
+     fullfile += rebuilt
+
+writtenfile = open("finaloutput.txt",'w')
+writtenfile.write(fullfile)
+writtenfile.close()
 t2 = time()
 print 'time taken is ',(t2 - t1) ,' seconds'
 '''
